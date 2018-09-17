@@ -1,0 +1,8 @@
+{
+    "hosts":["127.0.0.1:27017"],
+    "database":"admin",
+    "username":"root",
+    "password":"example",
+    "sslCrtFile":"/etc/config/mongodb-cert.crt",
+    "timeout":10
+}
