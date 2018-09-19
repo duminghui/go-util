@@ -1,0 +1,8 @@
+{
+    "debugFile":"./logs/debug.log",
+    "infoFile":"./logs/info.log",
+    "warnFle":"./logs/warn.log",
+    "errorFile":"./logs/error.log",
+    "fatalFile":"./logs/fatal.log",
+    "panicFile":"./logs/panic.log"
+},
