@@ -72,7 +72,10 @@ func getWriter(path string) (*rotatelogs.RotateLogs, error) {
 	if err != nil {
 		return nil, err
 	}
-	os.MkdirAll(filepath.Dir(absPath), os.ModePerm)
+	err = os.MkdirAll(filepath.Dir(absPath), os.ModePerm)
+	if err != nil {
+		return nil, err
+	}
 	writer, err = rotatelogs.New(
 		absPath+".%Y%m%d",
 		rotatelogs.WithLinkName(absPath),
