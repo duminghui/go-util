@@ -20,6 +20,16 @@ type Config struct {
 	PanicFile string `json:"panicFile"`
 }
 
+var textFormatter = &TextFormatter{
+	TimestampFormat:  "2006-01-02 15:04:05",
+	DisableTimestamp: false,
+	FullTimestamp:    true,
+}
+
+func init() {
+	logrus.SetFormatter(textFormatter)
+}
+
 func New(config *Config) (*logrus.Logger, error) {
 	debugWriter, err := getWriter(config.DebugFile)
 	if err != nil {
@@ -52,12 +62,15 @@ func New(config *Config) (*logrus.Logger, error) {
 		logrus.ErrorLevel: errorWriter,
 		logrus.FatalLevel: fatalWriter,
 		logrus.PanicLevel: panicWriter,
-	}, &logrus.TextFormatter{
-		TimestampFormat: "2006-01-02 15:04:05",
-		FullTimestamp:   false,
+	}, &TextFormatter{
+		TimestampFormat:  "2006-01-02 15:04:05",
+		DisableColors:    true,
+		DisableTimestamp: false,
+		FullTimestamp:    true,
 	})
 	log := logrus.New()
 	log.AddHook(lfHook)
+	log.SetFormatter(textFormatter)
 	return log, nil
 }
 

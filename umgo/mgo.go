@@ -34,6 +34,10 @@ func NewConfig(confFile string) (*ConnConfig, error) {
 	return &connConfig, err
 }
 
+func Session() *mgo.Session {
+	return mgoSession
+}
+
 func NewSession(config *ConnConfig) (*mgo.Session, error) {
 	var dialServer func(*mgo.ServerAddr) (net.Conn, error)
 	if config.SSLCrtFile != "" {
