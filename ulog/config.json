@@ -1,4 +1,5 @@
 {
+    "logFile":"./logs/log",
     "debugFile":"./logs/debug.log",
     "infoFile":"./logs/info.log",
     "warnFle":"./logs/warn.log",

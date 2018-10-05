@@ -12,6 +12,7 @@ import (
 )
 
 type Config struct {
+	LogFile   string `json:"logFile"`
 	DebugFile string `json:"debugFile"`
 	InfoFile  string `json:"infoFile"`
 	WarnFile  string `json:"warnFile"`
@@ -28,6 +29,17 @@ var textFormatter = &TextFormatter{
 
 func init() {
 	logrus.SetFormatter(textFormatter)
+}
+
+func NewSingle(config *Config) (*logrus.Logger, error) {
+	logWriter, err := getWriter(config.LogFile)
+	if err != nil {
+		return nil, err
+	}
+	log := logrus.New()
+	log.SetOutput(logWriter)
+	log.SetFormatter(textFormatter)
+	return log, nil
 }
 
 func New(config *Config) (*logrus.Logger, error) {
