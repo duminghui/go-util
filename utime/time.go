@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-func FormatLongTimeStrUTC(seconds int) string {
-	times := time.Unix(int64(seconds), 0)
+func FormatLongTimeStrUTC(seconds int64) string {
+	times := time.Unix(seconds, 0)
 	localUTC, _ := time.LoadLocation("")
 	timeUTC := times.In(localUTC)
 	return timeUTC.Format("2006-01-02 15:04:05")
