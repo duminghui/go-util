@@ -11,3 +11,9 @@ func FormatLongTimeStrUTC(seconds int64) string {
 	timeUTC := times.In(localUTC)
 	return timeUTC.Format("2006-01-02 15:04:05")
 }
+
+func FormatTimeStrUTC(t time.Time) string {
+	localUTC, _ := time.LoadLocation("")
+	timeUTC := t.In(localUTC)
+	return timeUTC.Format("2006-01-02 15:04:05")
+}
